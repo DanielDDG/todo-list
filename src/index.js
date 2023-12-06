@@ -1,3 +1,5 @@
 import './style.css';
+import { Header } from './header';
 
-console.log('Shit is workin! Really?');
+const header = new Header();
+console.log('Loaded!');
