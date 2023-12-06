@@ -1,7 +1,6 @@
-export class Header {
+export class CreateHamburger {
     constructor() {
         this.toggleHamburger();
-        this.toggleDarkMode();
     }
 
     toggleHamburger() {
@@ -10,11 +9,25 @@ export class Header {
             hamburger.classList.toggle('change');
         });
     }
+};
 
-    toggleDarkMode() {
-        const toggleContainer = document.getElementById('toggleContainer');
-        toggleContainer.addEventListener('click', () => {
+export class CreateToggleButton {
+    constructor() {
+        this.createButton();
+    }
+
+    createButton() {
+        const toggleButton = document.createElement('button');
+        const Icon = document.createElement('i');
+
+        toggleContainer.appendChild(toggleButton);
+        toggleButton.appendChild(Icon);
+
+        Icon.className = 'gg-sun';
+
+        toggleButton.addEventListener('click', () => {
             document.body.classList.toggle('darkmode');
+            Icon.className == 'gg-sun' ? Icon.className = 'gg-moon' : Icon.className = 'gg-sun';
         });
     }
-};
+}

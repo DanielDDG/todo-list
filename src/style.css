@@ -1,6 +1,9 @@
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/sun.css');
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/moon.css');
+
 :root {
     --light-color: #f7f8de;
-    --dark-color: #00332a;
+    --dark-color: #242425;
     --font-color: #000000;
     --font-color-light: #ffffff;
     --border-color: #222;
@@ -30,11 +33,13 @@ body {
     font-family: var(--main-font);
     background-color: var(--light);
     color: var(--dark);
+    transition: 0.5s;
 }
 
 .darkmode {
     --light: var(--dark-color);
     --dark: var(--light-color);
+    --font-color: var(--font-color-light);
 }
 
 /* Header styling. */
@@ -103,11 +108,21 @@ body {
 /* Toggle styling. */
 
 #toggleContainer {
+    height: 25px;
     justify-self: end;
 }
 
 #toggleContainer > button {
-    margin-right: 10px;
+    border: none;
+    background-color: var(--light);
+    color: var(--dark);
+    margin-right: 20px;
+    background-image: url('https://unpkg.com/css.gg@2.0.0/icons/css/sun.css');
+    cursor: pointer;
+}
+
+i {
+    transition: 0.8s;
 }
 
 /* Content styling. */
@@ -115,6 +130,7 @@ body {
 .content {
     border: 5px solid red;
     background-color: white;
+    background-image: url('https://unpkg.com/css.gg@2.0.0/icons/css/sun.css');
 }
 
 /* Footer styling. */

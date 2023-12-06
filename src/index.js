@@ -1,5 +1,7 @@
 import './style.css';
-import { Header } from './header';
+import { CreateHamburger } from './header';
+import { CreateToggleButton } from './header';
 
-const header = new Header();
+const createHamburger = new CreateHamburger();
+const createToggleButton = new CreateToggleButton();
 console.log('Loaded!');
