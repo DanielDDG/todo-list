@@ -1,7 +1,8 @@
 import './style.css';
 import { CreateHamburger } from './header';
 import { CreateToggleButton } from './header';
+import { CreateHamburgerContent } from './content';
 
 const createHamburger = new CreateHamburger();
 const createToggleButton = new CreateToggleButton();
-console.log('Loaded!');
+const createHamburgerContent = new CreateHamburgerContent();

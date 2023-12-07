@@ -128,9 +128,23 @@ i {
 /* Content styling. */
 
 .content {
+    display: grid;
+    grid-template-columns: 1fr;
     border: 5px solid red;
     background-color: white;
     background-image: url('https://unpkg.com/css.gg@2.0.0/icons/css/sun.css');
+}
+
+.hamburgerActive {
+    grid-template-columns: 1fr 4fr;
+}
+
+#mainContent {
+    border: 5px solid yellow;
+}
+
+#hamburgerContent {
+    border: 5px solid purple;
 }
 
 /* Footer styling. */
