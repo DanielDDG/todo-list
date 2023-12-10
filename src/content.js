@@ -1,24 +1,29 @@
 export class CreateHamburgerContent {
     constructor(){
-        this.activateBurger();
+        this.slideBurger();
     }
 
-    activateBurger() {
-        const hamburgerContent = document.createElement('div');
-        const hamburgerButton = document.getElementById('hamburger');
+    slideBurger() {
         const content = document.getElementsByClassName('content')[0];
-        let active = true;
-        hamburgerContent.id = 'hamburgerContent';
+        const mainContent = document.getElementById('mainContent');
+        const hamburgerContent = document.getElementById('hamburgerContent');
+        const hamburgerButton = document.getElementById('hamburger');
 
         hamburgerButton.addEventListener('click', () => {
-            if (active == true) {
-                content.insertBefore(hamburgerContent, mainContent);
-                content.classList.toggle('hamburgerActive');
-                active = false;
+            if (hamburgerContent.className == 'hidden') {
+                setTimeout(() => {
+                    mainContent.style.left = '20%';
+                    hamburgerContent.style.left = '0%';
+                }, 1)
+                hamburgerContent.classList.toggle('hidden');
+                content.classList.toggle('templateReset');
             } else {
-                content.removeChild(hamburgerContent);
-                content.classList.remove('hamburgerActive');
-                active = true;
+                mainContent.style.left = '0%';
+                hamburgerContent.style.left = '-100%';
+                setTimeout(() => {
+                    hamburgerContent.classList.toggle('hidden');
+                    content.classList.toggle('templateReset');
+                }, 800)
             }
         });
     }

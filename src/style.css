@@ -128,11 +128,11 @@ i {
 /* Content styling. */
 
 .content {
+    position: relative;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 4fr;
     border: 5px solid red;
     background-color: white;
-    background-image: url('https://unpkg.com/css.gg@2.0.0/icons/css/sun.css');
 }
 
 .hamburgerActive {
@@ -140,11 +140,26 @@ i {
 }
 
 #mainContent {
+    position: absolute;
+    inset: 0%;
+    transition: left 0.8s ease-in-out;
     border: 5px solid yellow;
 }
 
 #hamburgerContent {
+    position: relative;
+    left: -100%;
+    transition: left 0.8s ease-in-out;
     border: 5px solid purple;
+    background-color: rgb(224, 154, 62);
+}
+
+.hidden {
+    display: none;
+}
+
+.templateReset {
+    grid-template-columns: 1fr;
 }
 
 /* Footer styling. */
