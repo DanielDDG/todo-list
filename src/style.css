@@ -95,7 +95,7 @@ body {
     color: rgb(59, 197, 59);
 }
 
-#title > span { color: var(--font-color); }
+#title > span { color: var(--dark); }
 
 /* Toggle styling. */
 
@@ -120,20 +120,14 @@ i { transition: 0.8s; }
 .content {
     position: relative;
     display: grid;
-    grid-template-columns: 1fr minmax(532px, 4fr);
+    grid-template-columns: minmax(200px, 1fr) minmax(740px, 4fr);
     border: 5px solid red;
     background-color: white;
 }
 
 .hamburgerActive { grid-template-columns: 1fr 4fr; }
 
-.mainContent {
-    position: absolute;
-    background-color: var(--alt-light-color);
-    inset: 0%;
-    transition: left 0.8s ease-in-out, background-color 0.5s;
-    border: 5px solid yellow;
-}
+/* Hamburger content styling */
 
 #hamburgerContent {
     display: flex;
@@ -155,7 +149,8 @@ i { transition: 0.8s; }
     width: 90%;
 }
 
-.homeContainer {
+.homeContainer,
+.projectContainer {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -167,21 +162,44 @@ i { transition: 0.8s; }
     font-weight: bolder;
 }
 
-#all { margin-top: 15px; }
+#all, #defaultProject { margin-top: 15px; }
 
-.homeContainer > div:not(#home) {
+#addProject {
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px 0px;
+    font-family: var(--main-font);
+    font-size: 0.8rem;
+    font-weight: 900;
+    background-color: white;
+    padding: 5px;
+    width: 40%;
+    margin-left: 30%;
+    flex-wrap: nowrap;
+    cursor: pointer;
+}
+
+#addProject:active {
+    background-color: rgb(216, 216, 216);
+}
+
+.homeContainer > div:not(#home),
+.projectContainer > div:not(#projects) {
     transition: padding 0.5s ease-in-out;
 }
 
-.homeContainer > div:not(#home):hover {
+.homeContainer > div:not(#home):hover,
+.projectContainer > div:not(#projects):hover {
     padding: 2px;
     background-color: rgba(47, 204, 47, 0.3);
     border-radius: 5%;
 }
 
-.homeContainer > div:not(#home):focus {
+.homeContainer > div:not(#home):focus,
+.projectContainer > div:not(#projects):focus {
     padding: 3px;
     background-color: rgba(47, 204, 47, 0.7);
+    border: 3px solid black;
     border-radius: 5%;
 }
 
@@ -191,6 +209,16 @@ i { transition: 0.8s; }
     background: var(--dark);
     font-size: 0.1rem;
     content: '.';
+}
+
+/* Main content styling */
+
+.mainContent {
+    position: absolute;
+    background-color: var(--alt-light-color);
+    inset: 0%;
+    transition: left 0.8s ease-in-out, background-color 0.5s;
+    border: 5px solid yellow;
 }
 
 .mainContainer {

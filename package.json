@@ -26,6 +26,7 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "css.gg": "^2.1.1"
+    "css.gg": "^2.1.1",
+    "date-fns": "^2.30.0"
   }
 }
