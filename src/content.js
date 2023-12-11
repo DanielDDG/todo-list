@@ -1,13 +1,15 @@
-export class CreateHamburgerContent {
+export class CreateBurgerSliding {
     constructor(){
         this.slideBurger();
     }
 
     slideBurger() {
         const content = document.getElementsByClassName('content')[0];
-        const mainContent = document.getElementById('mainContent');
+        const mainContent = document.getElementsByClassName('mainContent')[0];
         const hamburgerContent = document.getElementById('hamburgerContent');
         const hamburgerButton = document.getElementById('hamburger');
+
+        // Temporarily removing hidden and template reset from HTML.
 
         hamburgerButton.addEventListener('click', () => {
             if (hamburgerContent.className == 'hidden') {
@@ -28,3 +30,18 @@ export class CreateHamburgerContent {
         });
     }
 }
+
+export class TaskCreator {
+    constructor(title, description, due, priority) {
+        this.title = title;
+        this.description = description;
+        this.due = due;
+        this.priority = priority;
+        this.createTask();
+    }
+
+    createTask() {
+
+    }
+}
+

@@ -2,16 +2,18 @@
 @import url('https://unpkg.com/css.gg@2.0.0/icons/css/moon.css');
 
 :root {
-    --light-color: #f7f8de;
-    --dark-color: #242425;
+    --main-light-color: #f7f8de;
+    --main-dark-color: #464545;
+    --alt-light-color: white;
+    --alt-dark-color: rgb(39, 38, 38);
     --font-color: #000000;
     --font-color-light: #ffffff;
     --border-color: #222;
     --border-color-light: #f1f1f1;
     --main-font: 'Lucida Grande', monospace;
 
-    --light: var(--light-color);
-    --dark: var(--dark-color);
+    --light: var(--main-light-color);
+    --dark: var(--main-dark-color);
 }
 
 * {
@@ -27,7 +29,7 @@ html {
 
 body {
     display: grid;
-    grid-template-rows: 1fr 8fr 1fr;
+    grid-template-rows: 1fr 8fr;
     height: 100vh;
     width: 100vw;
     font-family: var(--main-font);
@@ -37,9 +39,9 @@ body {
 }
 
 .darkmode {
-    --light: var(--dark-color);
-    --dark: var(--light-color);
-    --font-color: var(--font-color-light);
+    --light: var(--main-dark-color);
+    --dark: var(--main-light-color);
+    --alt-light-color: var(--alt-dark-color);
 }
 
 /* Header styling. */
@@ -80,17 +82,9 @@ body {
     transition: 0.7s;
 }
 
-.change #bar1 {
-    transform: translate(0, 11px) rotate(-45deg);
-}
-
-.change #bar2 {
-    opacity: 0;
-}
-
-.change #bar3 {
-    transform: translate(0, -11px) rotate(45deg);
-}
+.change #bar1 { transform: translate(0, 11px) rotate(-45deg); }
+.change #bar2 { opacity: 0; }
+.change #bar3 { transform: translate(0, -11px) rotate(45deg); }
 
 /* Title styling. */
 
@@ -101,9 +95,7 @@ body {
     color: rgb(59, 197, 59);
 }
 
-#title > span {
-    color: var(--font-color);
-}
+#title > span { color: var(--font-color); }
 
 /* Toggle styling. */
 
@@ -121,56 +113,114 @@ body {
     cursor: pointer;
 }
 
-i {
-    transition: 0.8s;
-}
+i { transition: 0.8s; }
 
 /* Content styling. */
 
 .content {
     position: relative;
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr minmax(532px, 4fr);
     border: 5px solid red;
     background-color: white;
 }
 
-.hamburgerActive {
-    grid-template-columns: 1fr 4fr;
-}
+.hamburgerActive { grid-template-columns: 1fr 4fr; }
 
-#mainContent {
+.mainContent {
     position: absolute;
+    background-color: var(--alt-light-color);
     inset: 0%;
-    transition: left 0.8s ease-in-out;
+    transition: left 0.8s ease-in-out, background-color 0.5s;
     border: 5px solid yellow;
 }
 
 #hamburgerContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     position: relative;
     left: -100%;
-    transition: left 0.8s ease-in-out;
+    transition: left 0.8s ease-in-out, background-color 0.5s;
     border: 5px solid purple;
-    background-color: rgb(224, 154, 62);
+    background-color: var(--light);
 }
 
-.hidden {
-    display: none;
+.hamburgerContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 90%;
+    width: 90%;
 }
 
-.templateReset {
-    grid-template-columns: 1fr;
+.homeContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-/* Footer styling. */
-
-.footer {
-    display: grid;
-    width: 100vw;
-    border: 5px solid green;
+#home,
+#projects {
+    font-size: 1.3rem;
+    font-weight: bolder;
 }
 
-.footer > div {
-    justify-self: center;
-    align-self: center;
+#all { margin-top: 15px; }
+
+.homeContainer > div:not(#home) {
+    transition: padding 0.5s ease-in-out;
 }
+
+.homeContainer > div:not(#home):hover {
+    padding: 2px;
+    background-color: rgba(47, 204, 47, 0.3);
+    border-radius: 5%;
+}
+
+.homeContainer > div:not(#home):focus {
+    padding: 3px;
+    background-color: rgba(47, 204, 47, 0.7);
+    border-radius: 5%;
+}
+
+#home::after,
+#projects::after {
+    display: block;
+    background: var(--dark);
+    font-size: 0.1rem;
+    content: '.';
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    gap: 10px;
+}
+
+#taskbar {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    padding: 20px;
+    height: 80px;
+    width: 95%;
+    font-size: 1.2rem;
+    background-color: rgb(36, 161, 36);
+    color: white;
+}
+
+#taskDisplay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 85%;
+    width: 95%;
+    border: 3px solid orange;
+}
+
+.hidden { display: none; }
+.templateReset { grid-template-columns: 1fr; }

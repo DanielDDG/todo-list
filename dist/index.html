@@ -18,12 +18,28 @@
       <div id="toggleContainer"></div>
     </header>
     <div class="content templateReset">
-      <div class="hidden" id="hamburgerContent"></div>
-      <div id="mainContent"></div>
+      <div class="hidden" id="hamburgerContent">
+        <div class="hamburgerContainer">
+          <div class="homeContainer">
+            <div id="home">Home</div>
+            <div id="all" tabindex="1">All</div>
+            <div id="today" tabindex="2">Due Today</div>
+            <div id="seven" tabindex="3">Due Within 7 Days</div>
+            <div id="priority" tabindex="4">Priority</div>
+          </div>
+          <div class="projectContainer">
+            <div id="projects">Projects</div>
+            <button id="addProject">+ Add Project</button>
+          </div>
+        </div>
+      </div>
+      <div class="mainContent">
+        <div class="mainContainer">
+          <div id="taskbar">All Tasks</div>
+          <div id="taskDisplay">You have no tasks due.</div>
+        </div>
+      </div>
     </div>
-    <footer class="footer">
-      <div id="copyright">DanielDDG @ GitHub</div>
-    </footer>
     <script src="main.js"></script>
   </body>
 </html>
