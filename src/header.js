@@ -1,12 +1,13 @@
+import retrievedElements from "./elements";
+
 export class CreateHamburger {
     constructor() {
         this.toggleHamburger();
     }
 
     toggleHamburger() {
-        const hamburger = document.getElementById('hamburger');
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('change');
+        retrievedElements.hamburger.addEventListener('click', () => {
+            retrievedElements.hamburger.classList.toggle('change');
         });
     }
 };
