@@ -25,7 +25,7 @@
             <div id="all" tabindex="1">All</div>
             <div id="today" tabindex="2">Due Today</div>
             <div id="seven" tabindex="3">Due Within 7 Days</div>
-            <div id="priority" tabindex="4">Priority</div>
+            <div id="priorityTab" tabindex="4">Priority</div>
           </div>
           <div class="projectContainer">
             <div id="projects">Projects</div>
@@ -41,6 +41,42 @@
         </div>
       </div>
     </div>
+    <form class="modal hidden">
+      <div class="modalContent">
+        <div class="closeContainer">
+          <span id="close">&times;</span>
+        </div>
+        <div class="topElementContainer">
+          <div class="taskContainer">
+            <label for="taskName">Task Name</label>
+            <input type="text" id="taskName" name="taskname" required>
+          </div>
+          <div class="dateContainer">
+            <label for="dueDate" id="dateLabel">Due Date</label>
+            <input type="date" id="dueDate" name="duedate">
+          </div>
+        </div>
+        <div class="bottomElementContainer">
+          <div class="descriptionContainer">
+            <label for="description">Description</label>
+            <textarea id="description" name="description"></textarea>
+          </div>
+          <div class="priorityContainer">
+            <label>
+              Priority Level
+              <select id="priority" name="priority">
+                <option value="Normal">Normal</option>
+                <option value="Important">Important</option>
+                <option value="Urgent">Urgent</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="submitContainer">
+          <button type="submit" id="submit">Submit</button>
+        </div>
+      </div>
+    </form>
     <script src="main.js"></script>
   </body>
 </html>
