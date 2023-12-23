@@ -17,6 +17,13 @@ const retrievedElements = {
     priority: document.getElementById('priority'),
     taskDisplay: document.getElementById('taskDisplay'),
     close: document.getElementById('close'),
+    dueToday: document.getElementById('today'),
+    dueThisWeek: document.getElementById('seven'),
+    defaultProject: document.getElementById('defaultProject'),
+    taskbar: document.getElementById('taskbar'),
+    UIDueDates: document.getElementsByClassName('UIDueDate'),
+    UITaskContainers: document.getElementsByClassName('UITaskContainer'),
+    all: document.getElementById('all'),
 }
 
 export default retrievedElements;

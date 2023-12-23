@@ -46,40 +46,51 @@ export class RetrieveValues {
 export class CreateTaskUI {
     constructor(task) {
         this.createTaskUI(task);
+        
+        this.leftTaskElements = null;
+        this.rightTaskElements = null;
+        this.UITaskName = null;
+        this.UIDescription = null;
+        this.UIDueDate = null;
+        this.UIPriority = null;
     }
 
     createTaskUI(task) {
 
+        let currentDate = new Date();
         retrievedElements.taskDisplay ? retrievedElements.taskDisplay.style.display = 'none' : console.log('No tasks');
 
-        const UITaskContainer = document.createElement('div');
-        const leftTaskElements = document.createElement('div');
-        const rightTaskElements = document.createElement('div');
-        const UITaskName = document.createElement('div');
-        const UIDescription = document.createElement('div');
-        const UIDueDate = document.createElement('div');
-        const UIPriority = document.createElement('div');
+        this.leftTaskElements = document.createElement('div');
+        this.rightTaskElements = document.createElement('div');
+        this.UITaskName = document.createElement('div');
+        this.UIDescription = document.createElement('div');
+        this.UIDueDate = document.createElement('div');
+        this.UIPriority = document.createElement('div');
 
-        retrievedElements.mainContainer.appendChild(UITaskContainer);
-        UITaskContainer.appendChild(leftTaskElements);
-        UITaskContainer.appendChild(rightTaskElements);
-        leftTaskElements.appendChild(UITaskName);
-        leftTaskElements.appendChild(UIDescription);
-        rightTaskElements.appendChild(UIDueDate);
-        rightTaskElements.appendChild(UIPriority);
+        this.UITaskName.textContent = task.title;
+        this.UIDescription.textContent = task.description;
+        this.UIDueDate.textContent = task.due;
+        this.UIPriority.textContent = task.priority;
 
-        UITaskContainer.className = 'UITaskContainer';
-        leftTaskElements.className = 'leftTaskElements';
-        rightTaskElements.className = 'rightTaskElements';
-        UITaskName.id = 'UITaskName'; 
-        UIDescription.id = 'UIDescription';
-        UIDueDate.id = 'UIDueDate'; 
-        UIPriority.id = 'UIPriority';
+    }
 
-        UITaskName.textContent = task.title;
-        UIDescription.textContent = task.description;
-        UIDueDate.textContent = task.due;
-        UIPriority.textContent = task.priority;
+    assignContainer(container) {
+        const newContainer = document.createElement('div');
+        newContainer.className = '"' + container + '"';
 
+        retrievedElements.mainContainer.appendChild(container);
+        container.appendChild(this.leftTaskElements);
+        container.appendChild(this.rightTaskElements);
+        this.leftTaskElements.appendChild(this.UITaskName);
+        this.leftTaskElements.appendChild(this.UIDescription);
+        this.rightTaskElements.appendChild(this.UIDueDate);
+        this.rightTaskElements.appendChild(this.UIPriority);
+
+        this.leftTaskElements.className = 'leftTaskElements';
+        this.rightTaskElements.className = 'rightTaskElements';
+        this.UITaskName.id = 'UITaskName'; 
+        this.UIDescription.id = 'UIDescription';
+        this.UIDueDate.className = 'UIDueDate'; 
+        this.UIPriority.id = 'UIPriority';
     }
 }

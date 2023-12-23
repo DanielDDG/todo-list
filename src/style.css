@@ -266,6 +266,14 @@ i { transition: 0.8s; }
     font-size: 0.8rem;
 }
 
+.rightTaskElements {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    gap: 10px;
+}
+
 /* Styling form element. */
 
 .modal {

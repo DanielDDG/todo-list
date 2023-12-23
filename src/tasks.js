@@ -1,8 +1,11 @@
-export class TaskCreator {
-    constructor(title, description, due, priority) {
-        this.title = title;
-        this.description = description;
-        this.due = due;
-        this.priority = priority;
+import retrievedElements from "./elements";
+
+export class FilterTasks {
+    constructor() {
+        this.filterTasks();
+    }
+
+    filterTasks() {
+        let currentDate = new Date();
     }
 }
