@@ -20,11 +20,12 @@ export class FormButtons {
 }
 
 export class TaskCreator {
-    constructor(title, description, due, priority) {
+    constructor(title, description, due, priority, project) {
         this.title = title;
         this.description = description;
         this.due = due;
         this.priority = priority;
+        this.project = project;
     }
 }
 
@@ -36,7 +37,7 @@ export class RetrieveValues {
     retrieveValues() {
         retrievedElements.submit.addEventListener('click', (event) => {
             event.preventDefault();
-            const task = new TaskCreator(taskName.value, description.value, dueDate.value, priority.value);
+            const task = new TaskCreator(taskName.value, description.value, dueDate.value, priority.value, project.value);
             new CreateTaskUI(task);
             retrievedElements.modal.classList.toggle('hidden');
         });
@@ -46,7 +47,6 @@ export class RetrieveValues {
 export class CreateTaskUI {
     constructor(task) {
         this.createTaskUI(task);
-        
         this.leftTaskElements = null;
         this.rightTaskElements = null;
         this.UITaskName = null;
@@ -57,8 +57,7 @@ export class CreateTaskUI {
 
     createTaskUI(task) {
 
-        let currentDate = new Date();
-        retrievedElements.taskDisplay ? retrievedElements.taskDisplay.style.display = 'none' : console.log('No tasks');
+        retrievedElements.noTasksContainer ? retrievedElements.noTasksContainer.style.display = 'none' : console.log('No tasks');
 
         this.leftTaskElements = document.createElement('div');
         this.rightTaskElements = document.createElement('div');
@@ -72,15 +71,26 @@ export class CreateTaskUI {
         this.UIDueDate.textContent = task.due;
         this.UIPriority.textContent = task.priority;
 
+        this.assignContainer(task.project);
     }
 
     assignContainer(container) {
-        const newContainer = document.createElement('div');
-        newContainer.className = '"' + container + '"';
 
-        retrievedElements.mainContainer.appendChild(container);
-        container.appendChild(this.leftTaskElements);
-        container.appendChild(this.rightTaskElements);
+        let containerHolder = container;
+        let lowercasedContainer = containerHolder.toLowerCase();
+        let element = document.getElementsByClassName(lowercasedContainer)[0];
+
+        if (element != null) {
+            element.appendChild(this.leftTaskElements);
+            element.appendChild(this.rightTaskElements);
+        } else {
+            let newContainer = document.createElement('div');
+            newContainer.className = lowercasedContainer + ' hidden';
+            retrievedElements.mainContainer.appendChild(newContainer);
+            newContainer.appendChild(this.leftTaskElements);
+            newContainer.appendChild(this.rightTaskElements);
+        }
+
         this.leftTaskElements.appendChild(this.UITaskName);
         this.leftTaskElements.appendChild(this.UIDescription);
         this.rightTaskElements.appendChild(this.UIDueDate);

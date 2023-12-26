@@ -15,7 +15,7 @@ const retrievedElements = {
     dueDate: document.getElementById('dueDate'),
     description: document.getElementById('description'),
     priority: document.getElementById('priority'),
-    taskDisplay: document.getElementById('taskDisplay'),
+    noTasksContainer: document.getElementById('noTasksContainer'),
     close: document.getElementById('close'),
     dueToday: document.getElementById('today'),
     dueThisWeek: document.getElementById('seven'),
