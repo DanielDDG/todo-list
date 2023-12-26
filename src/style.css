@@ -195,10 +195,12 @@ i { transition: 0.8s; }
     padding: 2px;
     background-color: rgba(47, 204, 47, 0.3);
     border-radius: 5%;
+    cursor: pointer;
 }
 
 .homeContainer > div:not(#home):focus,
-.projectContainer > div:not(#projects):focus {
+.projectContainer > div:not(#projects):focus,
+.focused {
     padding: 3px;
     background-color: rgba(47, 204, 47, 0.7);
     border: 3px solid black;
@@ -229,10 +231,23 @@ i { transition: 0.8s; }
     align-items: center;
     height: 100%;
     gap: 10px;
+    border: 10px solid purple;
+}
+
+.mainContainer > div {
+    height: 80px;
+    width: 95%;
+}
+
+.mainContainer > div > div {
+    margin-top: 10px;
+    height: 50px;
+    width: 100%;
 }
 
 #taskbar {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     margin-top: 20px;
     padding: 20px;
@@ -247,9 +262,19 @@ i { transition: 0.8s; }
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 85%;
+    height: 5%;
     width: 95%;
     border: 3px solid orange;
+}
+
+#addTask {
+    padding: 10px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    border: 3px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    font-weight: 900;
+    cursor: pointer;
 }
 
 /* Form Task Styling */
@@ -276,7 +301,8 @@ i { transition: 0.8s; }
 
 /* Styling form element. */
 
-.modal {
+.modal,
+.projectModal {
     position: fixed;
     z-index: 1;
     left: 0;
@@ -291,7 +317,7 @@ i { transition: 0.8s; }
 .modalContent {
     display: grid;
     grid-template-rows: 1fr 2fr 2fr 1fr;
-    background-color: #e4e2e2;
+    background-color: var(--alt-light-color);
     margin: 15% auto;
     border: 3px solid #888;
     padding: 20px;
@@ -300,6 +326,27 @@ i { transition: 0.8s; }
     width: 400px;
     font-size: 0.8rem;
     font-weight: 500;   
+}
+
+.projectModalContent {
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+    background-color: var(--alt-light-color);
+    margin: 15% auto;
+    border: 3px solid #888;
+    padding: 20px;
+    border-radius: 10px;
+    height: 200px;
+    width: 300px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.topProjectContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .closeContainer {
@@ -323,7 +370,8 @@ i { transition: 0.8s; }
     color: white;
 }
 
-#close {
+#close,
+#projectClose {
     font-size: 1.6rem;
     font-weight: 900;
     cursor: pointer;
@@ -376,4 +424,6 @@ select {
 
 label { display: block; }
 .hidden { display: none; }
+.hiddenProject { display: none; }
+.inline { display: inline; }
 .templateReset { grid-template-columns: 1fr; }

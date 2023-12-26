@@ -35,12 +35,14 @@
       </div>
       <div class="mainContent">
         <div class="mainContainer">
-          <div id="taskbar">All Tasks</div>
+          <div id="taskbar">All Tasks
+            <button id="addTask">+ Add Task</button>
+          </div>
           <div id="noTasksContainer">You have no tasks due.</div>
-          <div class="all hidden"></div>
-          <div class="today hidden"></div>
-          <div class="seven hidden"></div>
-          <div class="default hidden"></div>
+          <div class="all hiddenProject"></div>
+          <div class="today hiddenProject"></div>
+          <div class="seven hiddenProject"></div>
+          <div class="default hiddenProject"></div>
         </div>
       </div>
     </div>
@@ -83,6 +85,20 @@
         </div>
         <div class="submitContainer">
           <button type="submit" id="submit">Submit</button>
+        </div>
+      </div>
+    </form>
+    <form class="projectModal hidden">
+      <div class="projectModalContent">
+        <div class="closeContainer">
+          <span id="projectClose">&times;</span>
+        </div>
+        <div class="topProjectContainer">
+          <label for="projectName">Project Name</label>
+          <input type="text" id="projectName" name="projectName" required>
+        </div>
+        <div class="submitContainer">
+          <button type="submit" id="projectSubmit">Submit</button>
         </div>
       </div>
     </form>

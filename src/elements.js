@@ -2,6 +2,7 @@ const retrievedElements = {
     content: document.getElementsByClassName('content')[0],
     mainContent: document.getElementsByClassName('mainContent')[0],
     mainContainer: document.getElementsByClassName('mainContainer')[0],
+    hamburgerContainer: document.getElementsByClassName('hamburgerContainer')[0],
     hamburgerContent: document.getElementById('hamburgerContent'),
     hamburgerButton: document.getElementById('hamburger'),
     hamburger: document.getElementById('hamburger'),
@@ -23,7 +24,17 @@ const retrievedElements = {
     taskbar: document.getElementById('taskbar'),
     UIDueDates: document.getElementsByClassName('UIDueDate'),
     UITaskContainers: document.getElementsByClassName('UITaskContainer'),
-    all: document.getElementById('all'),
+    all: document.getElementsByClassName('all')[0],
+    allLabel: document.getElementById('allLabel'),
+    addTask: document.getElementById('addTask'),
+    projectModal: document.getElementsByClassName('projectModal')[0],
+    projectClose: document.getElementById('projectClose'),
+    projectSubmit: document.getElementById('projectSubmit'),
+    projectContainer: document.getElementsByClassName('projectContainer')[0],
+    project: document.getElementById('project'),
 }
 
-export default retrievedElements;
+const taskArray = []
+
+export { retrievedElements };
+export { taskArray };

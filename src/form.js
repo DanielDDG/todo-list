@@ -1,4 +1,5 @@
-import retrievedElements from "./elements";
+import { retrievedElements } from "./elements";
+import { taskArray } from "./elements";
 
 export class FormButtons {
     constructor() {
@@ -7,14 +8,22 @@ export class FormButtons {
     }
 
     toggleForm() {
-        retrievedElements.addProject.addEventListener('click', () => {
+        retrievedElements.addTask.addEventListener('click', () => {
             retrievedElements.modal.classList.toggle('hidden');
         });
+
+        retrievedElements.addProject.addEventListener('click', () => {
+            retrievedElements.projectModal.classList.toggle('hidden');
+        })
     }
 
     closeForm() {
         retrievedElements.close.addEventListener('click', () => {
             retrievedElements.modal.classList.toggle('hidden');
+        })
+
+        retrievedElements.projectClose.addEventListener('click', () => {
+            retrievedElements.projectModal.classList.toggle('hidden');
         })
     }
 }
@@ -40,6 +49,27 @@ export class RetrieveValues {
             const task = new TaskCreator(taskName.value, description.value, dueDate.value, priority.value, project.value);
             new CreateTaskUI(task);
             retrievedElements.modal.classList.toggle('hidden');
+        });
+
+        retrievedElements.projectModal.addEventListener('submit', (event) => {
+            event.preventDefault();
+            let newProject = document.createElement('div');
+            let newTaskContainer = document.createElement('div');
+            let newOption = document.createElement('option');
+            let projectNameLowercase = projectName.value.toLowerCase();
+
+            newProject.id = projectNameLowercase + 'Project';
+            newProject.textContent = projectName.value;
+            newTaskContainer.className = projectNameLowercase + ' hidden';
+            newOption.value = projectName.value;
+            newOption.textContent = projectName.value;
+
+            retrievedElements.projectContainer.insertBefore(newProject, addProject);
+            retrievedElements.mainContainer.appendChild(newTaskContainer);
+            retrievedElements.project.appendChild(newOption);
+            retrievedElements.projectModal.classList.toggle('hidden');
+
+            newProject.tabIndex = newProject.previousElementSibling.tabIndex + 1;
         });
     }
 }
@@ -81,14 +111,20 @@ export class CreateTaskUI {
         let element = document.getElementsByClassName(lowercasedContainer)[0];
 
         if (element != null) {
-            element.appendChild(this.leftTaskElements);
-            element.appendChild(this.rightTaskElements);
+            let newTaskName = document.createElement('div');
+            newTaskName.className = 'UITaskContainer';
+            element.appendChild(newTaskName);
+            newTaskName.appendChild(this.leftTaskElements);
+            newTaskName.appendChild(this.rightTaskElements);
         } else {
             let newContainer = document.createElement('div');
-            newContainer.className = lowercasedContainer + ' hidden';
+            let newTaskName = document.createElement('div');
+            newContainer.className = lowercasedContainer + ' hiddenProject';
+            newTaskName.className = 'UITaskContainer';
             retrievedElements.mainContainer.appendChild(newContainer);
-            newContainer.appendChild(this.leftTaskElements);
-            newContainer.appendChild(this.rightTaskElements);
+            newContainer.appendChild(newTaskName);
+            newTaskName.appendChild(this.leftTaskElements);
+            newTaskName.appendChild(this.rightTaskElements);
         }
 
         this.leftTaskElements.appendChild(this.UITaskName);

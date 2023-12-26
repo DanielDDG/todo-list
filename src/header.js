@@ -1,4 +1,4 @@
-import retrievedElements from "./elements";
+import { retrievedElements } from "./elements";
 
 export class CreateHamburger {
     constructor() {
