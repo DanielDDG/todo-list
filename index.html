@@ -28,21 +28,18 @@
           </div>
           <div class="projectContainer">
             <div id="projects">Projects</div>
-            <div id="defaultProject" tabindex="4">Default</div>
+            <div class='project' id="defaultProject" tabindex="4">Default</div>
             <button id="addProject">+ Add Project</button>
           </div>
         </div>
       </div>
       <div class="mainContent">
         <div class="mainContainer">
-          <div id="taskbar">All Tasks
+          <div id="taskbar"><span id="taskbarTitle">All Tasks</span>
             <button id="addTask">+ Add Task</button>
           </div>
           <div id="noTasksContainer">You have no tasks due.</div>
-          <div class="all hiddenProject"></div>
-          <div class="today hiddenProject"></div>
-          <div class="seven hiddenProject"></div>
-          <div class="default hiddenProject"></div>
+          <div class="mainTaskContainer"></div>
         </div>
       </div>
     </div>
@@ -77,7 +74,7 @@
             </label>
             <label>
               Project
-              <select id="project" name="project">
+              <select id="projectOption" name="projectOption">
                 <option value="Default">Default</option>
               </select>
             </label>
