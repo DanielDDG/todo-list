@@ -35,6 +35,7 @@ const retrievedElements = {
     projectContainer: document.getElementsByClassName('projectContainer')[0],
     project: document.getElementById('project'),
     mainTaskContainer: document.getElementsByClassName('mainTaskContainer')[0],
+    taskbarTitle: document.getElementById('taskbarTitle'),
 }
 
 export { retrievedElements };
