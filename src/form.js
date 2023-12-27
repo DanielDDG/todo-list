@@ -1,4 +1,5 @@
 import { retrievedElements } from "./elements";
+import { projectArray } from "./elements";
 
 export class FormButtons {
     constructor() {
@@ -45,11 +46,34 @@ export class RetrieveValues {
     retrieveValues() {
         retrievedElements.submit.addEventListener('click', (event) => {
             event.preventDefault();
-            const task = new TaskCreator(taskName.value, description.value, dueDate.value, priority.value, project.value);
+            const task = new TaskCreator(taskName.value, description.value, dueDate.value, priority.value, projectOption.value);
             new CreateTaskUI(task);
             retrievedElements.modal.classList.toggle('hidden');
         });
+
+        retrievedElements.projectModal.addEventListener('submit', (event) => {
+            event.preventDefault();
+            let newProject = document.createElement('div');
+            let newOption = document.createElement('option');
+            let projectNameLowercase = projectName.value.toLowerCase();
+
+            newProject.className = 'project';
+            newProject.id = projectNameLowercase + 'Project';
+            newProject.textContent = projectName.value;
+            newOption.value = projectName.value;
+            newOption.textContent = projectName.value;
+
+            retrievedElements.projectContainer.insertBefore(newProject, addProject);
+            retrievedElements.projectOption.appendChild(newOption);
+            retrievedElements.projectModal.classList.toggle('hidden');
+
+            newProject.tabIndex = newProject.previousElementSibling.tabIndex + 1;
+            projectArray.push(newProject);
+            console.log(projectArray);
+        });
     }
+
+
 }
 
 export class CreateTaskUI {
@@ -88,7 +112,7 @@ export class CreateTaskUI {
         this.rightTaskElements.appendChild(this.UIDueDate);
         this.rightTaskElements.appendChild(this.UIPriority);
 
-        this.UITaskContainer.className = 'UITaskContainer';
+        this.UITaskContainer.className = 'UITaskContainer ' + task.project;
         this.leftTaskElements.className = 'leftTaskElements';
         this.rightTaskElements.className = 'rightTaskElements';
         this.UITaskName.id = 'UITaskName';

@@ -33,9 +33,14 @@ const retrievedElements = {
     projectClose: document.getElementById('projectClose'),
     projectSubmit: document.getElementById('projectSubmit'),
     projectContainer: document.getElementsByClassName('projectContainer')[0],
-    project: document.getElementById('project'),
+    projectOption: document.getElementById('projectOption'),
     mainTaskContainer: document.getElementsByClassName('mainTaskContainer')[0],
     taskbarTitle: document.getElementById('taskbarTitle'),
 }
 
+const projectArray = [
+    defaultProject,
+]
+
 export { retrievedElements };
+export { projectArray }

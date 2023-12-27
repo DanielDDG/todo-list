@@ -1,4 +1,5 @@
 import { retrievedElements } from "./elements";
+import { projectArray } from "./elements";
 const { differenceInHours } = require("date-fns");
 
 export class FilterTasks {
@@ -65,6 +66,37 @@ export class FilterTasks {
                             task.classList.add('hidden');
                         }
                     })
+                })
+            })
+        })
+
+        this.projectListener();
+        const targetNode = retrievedElements.projectContainer;
+        const config = { childList: true };
+
+        const callback = (mutationList) => {
+            for (const mutation of mutationList) {
+                if (mutation.type === 'childList') {
+                    this.projectListener();
+                }
+            }
+        };
+
+        const observer = new MutationObserver(callback);
+        observer.observe(targetNode, config);
+    }
+
+    projectListener() {
+        projectArray.forEach((project) => {
+            project.addEventListener('click', () => {
+                let taskArray = document.querySelectorAll('.UITaskContainer');
+                taskArray.forEach((task) => {
+                    console.log(task.classList);
+                    if (task.classList.contains(project.textContent)) {
+                        task.classList.remove('hidden');
+                    } else {
+                        task.classList.add('hidden');
+                    }
                 })
             })
         })
