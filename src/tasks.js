@@ -6,35 +6,36 @@ export class FilterTasks {
     }
 
     filterTasks() {
+        retrievedElements.allLabel.click();
         let currentDate = new Date();
-
-        document.addEventListener('DOMContentLoaded', () => {
-            retrievedElements.allLabel.click();
-            retrievedElements.allLabel.focus();
-            retrievedElements.allLabel.classList.add('focused');
-
-            retrievedElements.hamburgerContainer.addEventListener('focusin', (event) => {
-                let focusedElement = event.target;
-
-                if (focusedElement != retrievedElements.allLabel) {
-                    retrievedElements.allLabel.classList.remove('focused');
-                    retrievedElements.all.classList.add('hiddenProject');
-                }
+        let currentYear = currentDate.getFullYear();
+        let currentMonth = currentDate.getMonth() + 1;
+        let currentDay = currentDate.getDate();
+        let formattedDate = `${currentYear}-${currentMonth}-${currentDay}`;
+        
+        retrievedElements.allLabel.addEventListener('click', () => {
+            let taskArray = document.querySelectorAll('.UITaskContainer');
+            taskArray.forEach((task) => {
+                task.classList.remove('hidden');
             })
         })
 
-        retrievedElements.allLabel.addEventListener('click', () => {
-            const hiddenElements = document.querySelectorAll('.hiddenProject');
-            console.log(hiddenElements);
+        retrievedElements.todayLabel.addEventListener('click', () => {
+            let taskArray = document.querySelectorAll('.UITaskContainer');
 
-            hiddenElements.forEach(hiddenElement => {
-                if (hiddenElement.hasChildNodes()) {
-                    hiddenElement.classList.remove('hiddenProject');
-                    hiddenElement.classList.add('inline');
-                }
+            taskArray.forEach((task) => {
+                let rightElements = task.querySelectorAll('.rightTaskElements');
+                rightElements.forEach((rightElement) => {
+                    let dueDates = rightElement.querySelectorAll('#UIDueDate')
+                    dueDates.forEach((date) => {
+                        if (formattedDate != date.textContent) {
+                            task.classList.add('hidden');
+                        } else {
+                            task.classList.remove('hidden');
+                        }
+                    })
+                })
             })
-
-
         })
     }
 }

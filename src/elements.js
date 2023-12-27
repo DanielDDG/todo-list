@@ -26,15 +26,15 @@ const retrievedElements = {
     UITaskContainers: document.getElementsByClassName('UITaskContainer'),
     all: document.getElementsByClassName('all')[0],
     allLabel: document.getElementById('allLabel'),
+    todayLabel: document.getElementById('todayLabel'),
+    sevenLabel: document.getElementById('sevenLabel'),
     addTask: document.getElementById('addTask'),
     projectModal: document.getElementsByClassName('projectModal')[0],
     projectClose: document.getElementById('projectClose'),
     projectSubmit: document.getElementById('projectSubmit'),
     projectContainer: document.getElementsByClassName('projectContainer')[0],
     project: document.getElementById('project'),
+    mainTaskContainer: document.getElementsByClassName('mainTaskContainer')[0],
 }
 
-const taskArray = []
-
 export { retrievedElements };
-export { taskArray };

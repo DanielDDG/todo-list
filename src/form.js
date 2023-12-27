@@ -1,5 +1,4 @@
 import { retrievedElements } from "./elements";
-import { taskArray } from "./elements";
 
 export class FormButtons {
     constructor() {
@@ -50,27 +49,6 @@ export class RetrieveValues {
             new CreateTaskUI(task);
             retrievedElements.modal.classList.toggle('hidden');
         });
-
-        retrievedElements.projectModal.addEventListener('submit', (event) => {
-            event.preventDefault();
-            let newProject = document.createElement('div');
-            let newTaskContainer = document.createElement('div');
-            let newOption = document.createElement('option');
-            let projectNameLowercase = projectName.value.toLowerCase();
-
-            newProject.id = projectNameLowercase + 'Project';
-            newProject.textContent = projectName.value;
-            newTaskContainer.className = projectNameLowercase + ' hidden';
-            newOption.value = projectName.value;
-            newOption.textContent = projectName.value;
-
-            retrievedElements.projectContainer.insertBefore(newProject, addProject);
-            retrievedElements.mainContainer.appendChild(newTaskContainer);
-            retrievedElements.project.appendChild(newOption);
-            retrievedElements.projectModal.classList.toggle('hidden');
-
-            newProject.tabIndex = newProject.previousElementSibling.tabIndex + 1;
-        });
     }
 }
 
@@ -89,6 +67,7 @@ export class CreateTaskUI {
 
         retrievedElements.noTasksContainer ? retrievedElements.noTasksContainer.style.display = 'none' : console.log('No tasks');
 
+        this.UITaskContainer = document.createElement('div');
         this.leftTaskElements = document.createElement('div');
         this.rightTaskElements = document.createElement('div');
         this.UITaskName = document.createElement('div');
@@ -101,42 +80,21 @@ export class CreateTaskUI {
         this.UIDueDate.textContent = task.due;
         this.UIPriority.textContent = task.priority;
 
-        this.assignContainer(task.project);
-    }
-
-    assignContainer(container) {
-
-        let containerHolder = container;
-        let lowercasedContainer = containerHolder.toLowerCase();
-        let element = document.getElementsByClassName(lowercasedContainer)[0];
-
-        if (element != null) {
-            let newTaskName = document.createElement('div');
-            newTaskName.className = 'UITaskContainer';
-            element.appendChild(newTaskName);
-            newTaskName.appendChild(this.leftTaskElements);
-            newTaskName.appendChild(this.rightTaskElements);
-        } else {
-            let newContainer = document.createElement('div');
-            let newTaskName = document.createElement('div');
-            newContainer.className = lowercasedContainer + ' hiddenProject';
-            newTaskName.className = 'UITaskContainer';
-            retrievedElements.mainContainer.appendChild(newContainer);
-            newContainer.appendChild(newTaskName);
-            newTaskName.appendChild(this.leftTaskElements);
-            newTaskName.appendChild(this.rightTaskElements);
-        }
-
+        retrievedElements.mainTaskContainer.appendChild(this.UITaskContainer);
+        this.UITaskContainer.appendChild(this.leftTaskElements);
+        this.UITaskContainer.appendChild(this.rightTaskElements);
         this.leftTaskElements.appendChild(this.UITaskName);
         this.leftTaskElements.appendChild(this.UIDescription);
         this.rightTaskElements.appendChild(this.UIDueDate);
         this.rightTaskElements.appendChild(this.UIPriority);
 
+        this.UITaskContainer.className = 'UITaskContainer';
         this.leftTaskElements.className = 'leftTaskElements';
         this.rightTaskElements.className = 'rightTaskElements';
-        this.UITaskName.id = 'UITaskName'; 
+        this.UITaskName.id = 'UITaskName';
         this.UIDescription.id = 'UIDescription';
-        this.UIDueDate.className = 'UIDueDate'; 
+        this.UIDueDate.id = 'UIDueDate';
         this.UIPriority.id = 'UIPriority';
+
     }
 }
