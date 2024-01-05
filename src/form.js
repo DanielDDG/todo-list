@@ -120,5 +120,13 @@ export class CreateTaskUI {
         this.UIDueDate.id = 'UIDueDate';
         this.UIPriority.id = 'UIPriority';
 
+        if (task.priority === 'Normal') {
+            this.UIPriority.style.backgroundColor = 'lightgreen';
+        } else if (task.priority === 'Important') {
+            this.UIPriority.style.backgroundColor = 'rgb(214, 228, 91)';
+        } else {
+            this.UIPriority.style.backgroundColor = 'rgb(194, 91, 91)';
+        }
+
     }
 }
