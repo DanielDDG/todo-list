@@ -99,6 +99,54 @@
         </div>
       </div>
     </form>
+    <form class="editTaskModal hidden">
+      <div class="editTaskContent">
+        <div class="closeContainer">
+          <span id="editClose">&times;</span>
+        </div>
+        <div class="topElementContainer">
+          <div class="taskContainer">
+            <label for="editTaskName">Task Name</label>
+            <input type="text" id="editTaskName" name="editTaskName" required>
+          </div>
+          <div class="dateContainer">
+            <label for="editDueDate" id="editDateLabel">Due Date</label>
+            <input type="date" id="editDueDate" name="editDueDate">
+          </div>
+        </div>
+        <div class="bottomElementContainer">
+          <div class="descriptionContainer">
+            <label for="editDescription">Description</label>
+            <textarea id="editDescription" name="editDescription" maxlength="100"></textarea>
+          </div>
+          <div class="priorityContainer">
+            <label>
+              Priority Level
+              <select id="editPriority" name="editPriority">
+                <option value="Normal">Normal</option>
+                <option value="Important">Important</option>
+                <option value="Urgent">Urgent</option>
+              </select>
+            </label>
+            <label>
+              Project
+              <select id="editProjectOption" name="editProjectOption">
+                <option value="Default">Default</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="buttonContainer">
+          <div class="editButtonContainer">
+            <button type="submit" id="editButton">Edit</button>
+          </div>
+          <div class="deleteButtonContainer">
+            <button type="button" id="deleteButton">Delete</button>
+          </div>
+        </div>
+      </div>
+      </div>
+    </form>
     <script src="main.js"></script>
   </body>
 </html>
