@@ -179,18 +179,6 @@ export class CreateTaskUI {
                 container.classList.remove('active');
             })
 
-            /*
-
-            if (retrievedElements.editTaskName.value == UITaskName.textContent) {
-                UITaskName.textContent = retrievedElements.editTaskName.value;
-                UIDueDate.textContent = retrievedElements.editDueDate.value;
-                UIDescription.textContent = retrievedElements.editDescription.value;
-                UIPriority.textContent = retrievedElements.editPriority.value;
-                task.project = retrievedElements.editProjectOption.value;
-            }
-
-            */
-
             retrievedElements.editTaskModal.classList.add('hidden');
             UITaskContainer.classList.remove('active');
         })
@@ -202,23 +190,13 @@ export class CreateTaskUI {
 
         retrievedElements.deleteButton.addEventListener('click', (event) => {
             event.preventDefault();
-            UITaskContainer.remove();
+            containerArray.forEach((container) => {
+                if (container.classList.contains('active')) {
+                    container.remove();
+                }
+                container.classList.remove('active');
+            })
             retrievedElements.editTaskModal.classList.add('hidden');
         });
-    }
-}
-
-export class EditTaskUI {
-    constructor(container){
-        this.container = container;
-        this.deleteTask();
-    }
-
-    deleteTask() {
-        retrievedElements.deleteButton.addEventListener('click', (event) => {
-            event.preventDefault();
-            this.container.remove();
-            retrievedElements.editTaskModal.classList.add('hidden');
-        })
     }
 }
