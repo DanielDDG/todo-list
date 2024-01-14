@@ -31,12 +31,13 @@ export class FilterTasks {
             taskArray.forEach((task) => {
                 let rightElements = task.querySelectorAll('.rightTaskElements');
                 rightElements.forEach((rightElement) => {
-                    let dueDates = rightElement.querySelectorAll('#UIDueDate')
+                    let dueDates = rightElement.querySelectorAll('.UIDueDate')
                     dueDates.forEach((date) => {
 
                         let taskDate = date.textContent;
                         let taskDateChars = taskDate.split('');
                         let taskDateString = taskDateChars.toString();
+                        console.log(taskDateString);
 
                         if (taskDateString[10] === '0' && taskDateString[16] != '0') {
                             let firstSlicedTaskDateString = taskDateString.slice(0, 9);
@@ -44,6 +45,7 @@ export class FilterTasks {
                             let formattedSlicedTaskDate = secondSlicedTaskDateString.replace('0', '');
                             let fullTaskDateString = `${firstSlicedTaskDateString}${formattedSlicedTaskDate}`;
                             let formattedTaskDate = fullTaskDateString.replaceAll(',', '');
+                            console.log(formattedTaskDate);
                             this.checkDate(formattedDate, formattedTaskDate, task);
                         } else if (taskDateString[10] === '0' && taskDateString[16] === '0') {
                             let firstSlicedTaskDateString = taskDateString.slice(0, 9);
@@ -53,6 +55,7 @@ export class FilterTasks {
                             let secondFormattedSlicedTaskDate = thirdSlicedTaskDateString.replace('0', '');
                             let fullTaskDateString = `${firstSlicedTaskDateString}${firstFormattedSlicedTaskDate}${secondFormattedSlicedTaskDate}`;
                             let formattedTaskDate = fullTaskDateString.replaceAll(',', '');
+                            console.log(formattedTaskDate);
                             this.checkDate(formattedDate, formattedTaskDate, task);
                         } else if (taskDateString[10] != '0' && taskDateString[16] === '0') {
                             let firstSlicedTaskDateString = taskDateString.slice(0, 13);
@@ -79,7 +82,7 @@ export class FilterTasks {
             taskArray.forEach((task) => {
                 let rightElements = task.querySelectorAll('.rightTaskElements');
                 rightElements.forEach((rightElement) => {
-                    let dueDates = rightElement.querySelectorAll('#UIDueDate')
+                    let dueDates = rightElement.querySelectorAll('.UIDueDate')
                     dueDates.forEach((date) => {
                         const dateString = date.textContent.toString();
                         const slicedYear = dateString.slice(0, 4);

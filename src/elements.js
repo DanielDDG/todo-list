@@ -36,6 +36,15 @@ const retrievedElements = {
     projectOption: document.getElementById('projectOption'),
     mainTaskContainer: document.getElementsByClassName('mainTaskContainer')[0],
     taskbarTitle: document.getElementById('taskbarTitle'),
+    editTaskModal: document.getElementsByClassName('editTaskModal')[0],
+    editTaskName: document.getElementById('editTaskName'),
+    editDueDate: document.getElementById('editDueDate'),
+    editDescription: document.getElementById('editDescription'),
+    editPriority: document.getElementById('editPriority'),
+    editProjectOption: document.getElementById('editProjectOption'),
+    editButton: document.getElementById('editButton'),
+    editClose: document.getElementById('editClose'),
+    deleteButton: document.getElementById('deleteButton'),
 }
 
 const projectArray = [
