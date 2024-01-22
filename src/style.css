@@ -294,6 +294,35 @@ i { transition: 0.8s; }
     display: flex;
     flex-shrink: 0;
     position: relative;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.UIButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15px;
+    width: 15px;
+}
+
+.checkmark {
+    position: relative;
+    right: 15px;
+    bottom: 3px;
+    font-size: 1.2rem;
+}
+
+.leftContainerOne {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.leftContainerTwo {
+    display: flex;
     flex-direction: column;
 }
 
@@ -505,3 +534,12 @@ label { display: block; }
 .hiddenProject { display: none; }
 .inline { display: inline; }
 .templateReset { grid-template-columns: 1fr; }
+
+.checked { 
+    text-decoration: line-through;
+    opacity: 0.4;
+}
+
+#noDecoration {
+    text-decoration: none;
+}

@@ -1,5 +1,6 @@
 import { retrievedElements } from "./elements";
 import { projectArray } from "./elements";
+import { Storage } from "./storage";
 
 export class FormButtons {
     constructor() {
@@ -51,7 +52,9 @@ export class RetrieveValues {
         retrievedElements.submit.addEventListener('click', (event) => {
             event.preventDefault();
             const task = new TaskCreator(taskName.value, description.value, dueDate.value, priority.value, projectOption.value);
+            const serializedTask = JSON.stringify(task);
             new CreateTaskUI(task);
+            localStorage.setItem(taskName.value, serializedTask);
             retrievedElements.modal.classList.toggle('hidden');
         });
 
@@ -92,7 +95,11 @@ export class CreateTaskUI {
 
         let UITaskContainer = document.createElement('div');
         let leftTaskElements = document.createElement('div');
+        let leftContainerOne = document.createElement('div');
+        let leftContainerTwo = document.createElement('div');
         let rightTaskElements = document.createElement('div');
+        let UIButton = document.createElement('button');
+        let checkmark = document.createElement('div');
         let UITaskName = document.createElement('div');
         let UIDescription = document.createElement('div');
         let UIDueDate = document.createElement('div');
@@ -108,8 +115,12 @@ export class CreateTaskUI {
         retrievedElements.mainTaskContainer.appendChild(UITaskContainer);
         UITaskContainer.appendChild(leftTaskElements);
         UITaskContainer.appendChild(rightTaskElements);
-        leftTaskElements.appendChild(UITaskName);
-        leftTaskElements.appendChild(UIDescription);
+        leftTaskElements.appendChild(leftContainerOne);
+        leftTaskElements.appendChild(leftContainerTwo);
+        leftContainerOne.appendChild(UIButton);
+        leftContainerOne.appendChild(checkmark);
+        leftContainerTwo.appendChild(UITaskName);
+        leftContainerTwo.appendChild(UIDescription);
         rightTaskElements.appendChild(UIDueDate);
         rightTaskElements.appendChild(UIPriority);
         rightTaskElements.appendChild(UIEditContainer);
@@ -117,7 +128,11 @@ export class CreateTaskUI {
 
         UITaskContainer.className = 'UITaskContainer ' + task.project;
         leftTaskElements.className = 'leftTaskElements';
+        leftContainerOne.className = 'leftContainerOne';
+        leftContainerTwo.className = 'leftContainerTwo';
         rightTaskElements.className = 'rightTaskElements';
+        UIButton.className = 'UIButton';
+        checkmark.className = 'checkmark';
         UITaskName.className = 'UITaskName';
         UIDescription.className = 'UIDescription';
         UIDueDate.className = 'UIDueDate';
@@ -136,6 +151,24 @@ export class CreateTaskUI {
         const containers = document.getElementsByClassName('UITaskContainer');
         const containerArray = Array.from(containers);
 
+        function checkButton() {
+            if (!leftContainerTwo.classList.contains('checked')) {
+                leftContainerTwo.classList.add('checked');
+                UIDueDate.classList.add('checked');
+                UIPriority.classList.add('checked');
+                checkmark.textContent = '✓';
+            } else {
+                leftContainerTwo.classList.remove('checked');
+                UIDueDate.classList.remove('checked');
+                UIPriority.classList.remove('checked');
+                checkmark.textContent = '';
+            }
+        };
+
+        UIButton.addEventListener('click', checkButton);
+        checkmark.addEventListener('click', checkButton);
+
+
         UIEditSymbol.addEventListener('click', (event) => {
             event.preventDefault();
 
@@ -146,7 +179,9 @@ export class CreateTaskUI {
             retrievedElements.editProjectOption.value = task.project;
             retrievedElements.editTaskModal.classList.remove('hidden');
             UITaskContainer.classList.add('active');
-        })
+
+        });
+        
 
         retrievedElements.editButton.addEventListener('click', (event) => {
             event.preventDefault();
@@ -158,7 +193,21 @@ export class CreateTaskUI {
                     let description = container.querySelector('.UIDescription');
                     let priority = container.querySelector('.UIPriority');
 
-                    console.log(name.textContent);
+                    for (let i = 0; i < localStorage.length; i++) {
+                        const key = localStorage.key(i);
+                        const value = localStorage.getItem(key);
+                        const parsedTask = JSON.parse(value);
+                        
+                        if (parsedTask.title == name.textContent) {
+                            parsedTask.title = retrievedElements.editTaskName.value;
+                            parsedTask.description = retrievedElements.editDescription.value;
+                            parsedTask.due = retrievedElements.editDueDate.value;
+                            parsedTask.priority = retrievedElements.editPriority.value;
+                            parsedTask.project = retrievedElements.editProjectOption.value;
+                            let serializedTask = JSON.stringify(parsedTask);
+                            localStorage.setItem(key, serializedTask);
+                        }
+                    }
 
                     name.textContent = retrievedElements.editTaskName.value;
                     dueDate.textContent = retrievedElements.editDueDate.value;
