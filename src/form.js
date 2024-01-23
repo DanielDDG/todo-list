@@ -1,6 +1,5 @@
 import { retrievedElements } from "./elements";
 import { projectArray } from "./elements";
-import { Storage } from "./storage";
 
 export class FormButtons {
     constructor() {
@@ -54,7 +53,7 @@ export class RetrieveValues {
             const task = new TaskCreator(taskName.value, description.value, dueDate.value, priority.value, projectOption.value);
             const serializedTask = JSON.stringify(task);
             new CreateTaskUI(task);
-            localStorage.setItem(taskName.value, serializedTask);
+            localStorage.setItem('task: ' + taskName.value.toLowerCase(), serializedTask);
             retrievedElements.modal.classList.toggle('hidden');
         });
 
@@ -77,6 +76,30 @@ export class RetrieveValues {
             retrievedElements.projectOption.appendChild(newOptionOne);
             retrievedElements.editProjectOption.appendChild(newOptionTwo);
             retrievedElements.projectModal.classList.toggle('hidden');
+
+            const projectData = {
+                class: newProject.class,
+                id: newProject.id,
+                textContent: newProject.textContent
+            }
+
+            const optionData = {
+                value: newOptionOne.value,
+                textContent: newOptionOne.textContent
+            }
+
+            const editOptionData = {
+                value: newOptionTwo.value,
+                textContent: newOptionTwo.textContent
+            }
+
+            const serializedProject = JSON.stringify(projectData);
+            const serializedOption = JSON.stringify(optionData);
+            const serializedEditOption = JSON.stringify(editOptionData);
+
+            localStorage.setItem('project: ' + projectName.value.toLowerCase(), serializedProject);
+            localStorage.setItem('option: ' + projectName.value.toLowerCase(), serializedOption);
+            localStorage.setItem('editOption: ' + projectName.value.toLowerCase(), serializedEditOption);
 
             newProject.tabIndex = newProject.previousElementSibling.tabIndex + 1;
             projectArray.push(newProject);
@@ -205,7 +228,8 @@ export class CreateTaskUI {
                             parsedTask.priority = retrievedElements.editPriority.value;
                             parsedTask.project = retrievedElements.editProjectOption.value;
                             let serializedTask = JSON.stringify(parsedTask);
-                            localStorage.setItem(key, serializedTask);
+                            localStorage.removeItem(key);
+                            localStorage.setItem('task: ' + parsedTask.title.toLowerCase(), serializedTask);
                         }
                     }
 
