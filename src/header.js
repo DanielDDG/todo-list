@@ -24,11 +24,27 @@ export class CreateToggleButton {
         toggleContainer.appendChild(toggleButton);
         toggleButton.appendChild(Icon);
 
+        Icon.id = 'icon';
         Icon.className = 'gg-sun';
 
         toggleButton.addEventListener('click', () => {
-            document.body.classList.toggle('darkmode');
-            Icon.className == 'gg-sun' ? Icon.className = 'gg-moon' : Icon.className = 'gg-sun';
+            if (!document.body.classList.contains('darkmode')) {
+                const mode = {
+                    color: 'dark',
+                }
+                const serializedMode = JSON.stringify(mode);
+                localStorage.setItem('mode', serializedMode);
+                document.body.classList.add('darkmode');
+                Icon.className == 'gg-sun' ? Icon.className = 'gg-moon' : Icon.className = 'gg-sun';
+            } else {
+                const mode = {
+                    color: 'light',
+                }
+                const serializedMode = JSON.stringify(mode);
+                localStorage.setItem('mode', serializedMode);
+                document.body.classList.remove('darkmode');
+                Icon.className == 'gg-sun' ? Icon.className = 'gg-moon' : Icon.className = 'gg-sun';
+            }
         });
     }
 }

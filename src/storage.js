@@ -42,6 +42,19 @@ export class Storage {
                 newOptionTwo.value = projectNameCapitalized;
                 newOptionTwo.textContent = projectNameCapitalized;
                 retrievedElements.editProjectOption.appendChild(newOptionTwo);
+            } else if (key.startsWith('mode')) {
+                const icon = document.getElementById('icon');
+                if (parsedTask.color == 'light') {
+                    if (document.body.classList.contains('darkmode')) {
+                        document.body.classList.remove('darkmode');
+                        icon.className = 'gg-sun';
+                    }
+                } else if (parsedTask.color  == 'dark') {
+                    if (!document.body.classList.contains('darkmode')) {
+                        document.body.classList.add('darkmode');
+                        icon.className = 'gg-moon';
+                    }
+                }
             }
         }
 
